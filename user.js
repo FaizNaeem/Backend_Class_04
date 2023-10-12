@@ -28,7 +28,6 @@ res.status(200).send({
    user1
 })
 })
-
 router.post('/', async(req, res) => {
     try{
 
