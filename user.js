@@ -27,7 +27,6 @@ res.status(200).send({
     massage:"All users",
    user1
 })
-
 })
 
 router.post('/', async(req, res) => {
