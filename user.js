@@ -42,7 +42,7 @@ router.get('/:id',async(req, res)=>{
         {
             status:200,
             user3
-            
+        
     }
     )
 })
