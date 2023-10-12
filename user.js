@@ -38,12 +38,10 @@ router.post('/', async(req, res) => {
     }
 router.get('/:id',async(req, res)=>{
     let user3 = await  userModel.findById(req.params.id)
-    res.status(200).send(
-        {
+    res.status(200).send({
             status:200,
             user3
-        
-    }
+        }
     )
 })
     
