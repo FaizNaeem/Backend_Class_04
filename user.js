@@ -30,7 +30,6 @@ res.status(200).send({
 })
 router.post('/', async(req, res) => {
     try{
-
         let user2 = await  userModel.create({...req.body})
         res.status(200).send({ status: 200, user2})
     }
