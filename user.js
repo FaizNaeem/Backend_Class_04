@@ -1,6 +1,7 @@
 const app = require("express")
 const router = app.Router()
-const userModel = require('./faiz')
+const userModel = require('./Model/faiz')
+const { model } = require("mongoose")
 const user = [
     {
     Name:"faiz",
@@ -47,19 +48,34 @@ router.get('/:id',async(req, res)=>{
     
 
 })
-router.delete('/:id', (req, res) => {
-    console.log(req.body)
-    user.splice(req.params.id-1 ,1)
-    res.status(200).send({ status: 200, user : user })
+router.delete('/:id', async(req, res) => {
+  try{
+await userModel.findByIdAndDelete(req.params.id)
+res.status(200).send({
+    msg:"delete success",
+    status:200
 })
-router.put('/:id', (req, res) => {
-    
-    if(user[req.params.id-1]){
-        user[req.params.id-1].Name= 'faizu'
-        res.status(200).send({ status: 200, user : user[req.params.id-1].Name })
-    }
+  }
+  catch(err){
+    res.status(400).send({
+        msg:"Eroor",
+        status:400
+    })
+  }
+})
+router.put('/:id', async(req, res) => {
+    const save = await userModel.findByIdAndUpdate(req.params.id,{...req.body})
+if(!user){
+    res.status(400).send({
+        msg:"Eroor",
+        status:400
+    })
+}
 else{
-    res.status(400).send({ status: 400, Massage : "user not found"})
+    res.status(200).send({
+       save,
+        status:200
+    })
 }
 })
 module.exports= router
