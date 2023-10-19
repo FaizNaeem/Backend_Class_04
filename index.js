@@ -1,6 +1,7 @@
 const express = require("express")
 var app = express()
-const user = require("./user");
+const user = require("./Routes/user");
+const blog = require("./Routes/blog");
 const morgan = require("morgan");
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://faiz:faiz@cluster0.enqka2g.mongodb.net/').then(()=>{
@@ -11,6 +12,7 @@ mongoose.connect('mongodb+srv://faiz:faiz@cluster0.enqka2g.mongodb.net/').then((
 app.use(morgan("tiny"))
 app.use(express.json())
 app.use('/user', user)
+app.use('/Blog', blog)
 const middelever=(req ,res , next)=>{
 console.log("Middlewere console");
 next()

@@ -2,24 +2,24 @@ const app = require("express")
 const router = app.Router()
 const userModel = require('../Model/faiz')
 const { model } = require("mongoose")
-const user = [
-    {
-    Name:"faiz",
-    id:1
-},
-{
-    Name:"Junaid",
-    id:2
-},
-{
-    Name:"Atta",
-    id:3
-},
-{
-    Name:"Bilal",
-    id:4
-},
-]
+// const user = [
+//     {
+//     Name:"faiz",
+//     id:1
+// },
+// {
+//     Name:"Junaid",
+//     id:2
+// },
+// {
+//     Name:"Atta",
+//     id:3
+// },
+// {
+//     Name:"Bilal",
+//     id:4
+// },
+// ]
 router.get('/', async(req, res)=>{
     let user1 = await  userModel.find()
    
