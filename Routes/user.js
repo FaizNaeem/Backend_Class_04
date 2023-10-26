@@ -1,6 +1,7 @@
 const app = require("express")
 const router = app.Router()
 const userModel = require('../Model/faiz')
+const bcrypt = require('bcrypt')
 const { model } = require("mongoose")
 // const user = [
 //     {
@@ -31,6 +32,12 @@ res.status(200).send({
 })
 router.post('/', async(req, res) => {
     try{
+        const saltRounds = 10
+        const salt = await bcrypt.genSaltSync(saltRounds);
+        const hash = await bcrypt.hashSync(req.body.password, salt);
+        req.body.password= hash
+        console.log('hash-->' , hash );
+        console.log('pASSWORD-->' , req.body.password );
         let user2 = await  userModel.create({...req.body})
         res.status(200).send({ status: 200, user2})
     }
